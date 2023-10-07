@@ -27,10 +27,8 @@ class DoctrineUserProfileRepository extends DoctrineRepository implements UserPr
         return $this->findOneBy(['email' => $email]);
     }
 
-    public function save(UserProfile $userProfile): int
+    public function save(UserProfile $userProfile): void
     {
         $this->persist($userProfile);
-
-        return $userProfile->getId();
     }
 }

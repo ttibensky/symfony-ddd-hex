@@ -9,6 +9,6 @@ use App\UserProfile\Domain\Model\UserProfile;
 interface UserProfileRepository
 {
     public function get(int $id): ?UserProfile;
-    public function save(UserProfile $userProfile): int;
+    public function save(UserProfile $userProfile): void;
     public function getByEmail(string $email): ?UserProfile;
 }

@@ -28,8 +28,7 @@ final class CreateUserProfileCommandHandler implements CommandHandler
             $command->getEmail(),
         );
 
-        $id = $this->repository->save($userProfile);
-        $userProfile->setId($id);
+        $this->repository->save($userProfile);
 
         $this->eventBus->publish(...$userProfile->pullEvents());
 
