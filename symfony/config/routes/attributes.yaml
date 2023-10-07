@@ -1,0 +1,9 @@
+controllers:
+    resource:
+        path: ../../src/Feed/Infrastructure/Controller/
+        namespace: App\Feed\Infrastructure\Controller
+    type: attribute
+
+kernel:
+    resource: App\Kernel
+    type: attribute

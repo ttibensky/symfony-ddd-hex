@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity
+        name="App\Content\Domain\Model\Content"
+        table="content"
+        repository-class="App\Content\Persistence\Doctrine\Repository\DoctrineContentRepository"
+        inheritance-type="SINGLE_TABLE"
+    >
+        <discriminator-column name="type" type="string" />
+        <discriminator-map>
+            <discriminator-mapping value="blog" class="App\Content\Blog\Domain\Model\Blog" />
+            <discriminator-mapping value="comment" class="App\Content\Comment\Domain\Model\Comment" />
+        </discriminator-map>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+            <sequence-generator sequence-name="content_seq" initial-value="1" />
+        </id>
+        <field name="title" type="string" nullable="true" />
+        <field name="description" type="text" />
+        <field name="createdAt" column="created_at" type="datetime" />
+        <many-to-one field="author" target-entity="App\UserProfile\Domain\Model\UserProfile">
+            <join-column name="author_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
+        </many-to-one>
+        <one-to-many field="children" target-entity="App\Content\Comment\Domain\Model\Comment" mapped-by="parent" />
+    </entity>
+
+</doctrine-mapping>

@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  symfony:
+    restart: always
+    depends_on:
+      - mysql
+    expose:
+      - 80
+
+  mysql:
+    image: mysql:8.1.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: zTL32UkUGpoX
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: zTL32UkUGpoX
+      MYSQL_DATABASE: symfony
+    expose:
+      - 3306
