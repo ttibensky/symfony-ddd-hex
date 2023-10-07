@@ -7,7 +7,7 @@
     <entity
         name="App\Content\Domain\Model\Content"
         table="content"
-        repository-class="App\Content\Persistence\Doctrine\Repository\DoctrineContentRepository"
+        repository-class="App\Content\Infrastructure\Persistence\Doctrine\Repository\DoctrineContentRepository"
         inheritance-type="SINGLE_TABLE"
     >
         <discriminator-column name="type" type="string" />

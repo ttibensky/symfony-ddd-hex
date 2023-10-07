@@ -72,7 +72,7 @@ docker compose exec mysql mysql -usymfony -pzTL32UkUGpoX --default-character-set
 docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-set=utf8mb4 symfony_test > ./mysql/init/3_symfony_crud_test.sql
 ```
 
-## Sources that were used as inspiration when developing this repository
+## Sources of inspiration
 
 - https://minompi.medium.com/symfony-and-hexagonal-architecture-b3c4704e94de
 - https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/

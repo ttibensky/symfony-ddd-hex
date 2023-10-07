@@ -13,10 +13,12 @@ use Doctrine\Persistence\ManagerRegistry;
 abstract class DoctrineRepository extends ServiceEntityRepository
 {
     public function __construct(
-        private readonly ManagerRegistry $managerRegistry,
-        private readonly EntityManagerInterface $entityManager,
+        protected readonly ManagerRegistry $managerRegistry,
+        protected readonly EntityManagerInterface $entityManager,
         protected readonly string $entityClass,
-    ) {}
+    ) {
+        parent::__construct($managerRegistry, $entityClass);
+    }
 
     protected function persist(AggregateRoot $entity): void
     {

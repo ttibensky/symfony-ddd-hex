@@ -6,7 +6,7 @@
 
     <entity
         name="App\Content\Comment\Domain\Model\Comment"
-        repository-class="App\Content\Comment\Persistence\Doctrine\Repository\DoctrineCommentRepository"
+        repository-class="App\Content\Comment\Infrastructure\Persistence\Doctrine\Repository\DoctrineCommentRepository"
     >
 
         <many-to-one field="parent" target-entity="App\Content\Domain\Model\Content" inversed-by="children">

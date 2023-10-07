@@ -7,7 +7,7 @@
     <entity
         name="App\UserProfile\Domain\Model\UserProfile"
         table="user_profile"
-        repository-class="App\UserProfile\Persistence\Doctrine\Repository\DoctrineUserProfileRepository"
+        repository-class="App\UserProfile\Infrastructure\Persistence\Doctrine\Repository\DoctrineUserProfileRepository"
     >
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

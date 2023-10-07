@@ -1,7 +1,13 @@
-controllers:
+feed:
     resource:
         path: ../../src/Feed/Infrastructure/Controller/
         namespace: App\Feed\Infrastructure\Controller
+    type: attribute
+
+blog:
+    resource:
+        path: ../../src/Content/Blog/Infrastructure/Controller/
+        namespace: App\Content\Blog\Infrastructure\Controller
     type: attribute
 
 kernel:

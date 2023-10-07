@@ -6,7 +6,7 @@
 
     <entity
         name="App\Content\Blog\Domain\Model\Blog"
-        repository-class="App\Content\Blog\Persistence\Doctrine\Repository\DoctrineBlogRepository"
+        repository-class="App\Content\Blog\Infrastructure\Persistence\Doctrine\Repository\DoctrineBlogRepository"
     >
 
     </entity>
