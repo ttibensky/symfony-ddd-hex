@@ -1,0 +1,12 @@
+<h2>Comments section ({{ comments|length }})</h2>
+<table>
+    {% for comment in comments %}
+        <tr>
+            <td style="padding: 10px;">
+                <p>{{ comment.description }}</p>
+                <p>{{ comment.author.name }}, {{ comment.author.email }}, {{ comment.createdAt.format('Y-m-d H:i:s') }}, {{ comment.children.count }} replies</p>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</table>

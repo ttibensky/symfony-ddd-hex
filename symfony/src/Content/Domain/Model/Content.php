@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Content\Domain\Model;
 
 use App\Common\Domain\Aggregate\AggregateRoot;
-use App\Content\Blog\Domain\Event\BlogCreatedEvent;
-use App\Content\Blog\Domain\Model\ModelReference;
+use App\Common\Domain\Model\ModelReference;
 use App\Content\Comment\Domain\Model\Comment;
+use App\Content\Domain\Event\ContentCreatedEventFactory;
 
 /**
  * Content can be any type of content. Blog, Comments for now. Maybe reviews, videos or memes in the future.
@@ -23,7 +23,7 @@ abstract class Content extends AggregateRoot
 
     public function __construct(
         protected ?int $id,
-        protected string $title,
+        protected ?string $title,
         protected string $description,
         protected ?\DateTime $createdAt,
         protected ModelReference $author,
@@ -35,13 +35,13 @@ abstract class Content extends AggregateRoot
 
     public static function create(
         ?int $id,
-        string $title,
+        ?string $title,
         string $description,
         ModelReference $author,
         ?Content $parent = null,
     ): self {
         $content = new static($id, $title, $description, new \DateTime(), $author, $parent);
-        $content->record(new BlogCreatedEvent($content)); // @TODO use factory to get correct event
+        $content->record(ContentCreatedEventFactory::createEvent($content));
 
         return $content;
     }
@@ -60,7 +60,7 @@ abstract class Content extends AggregateRoot
         return $this;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }

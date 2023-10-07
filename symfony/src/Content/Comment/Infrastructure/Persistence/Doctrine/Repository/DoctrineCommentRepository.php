@@ -4,14 +4,21 @@ declare(strict_types=1);
 
 namespace App\Content\Comment\Infrastructure\Persistence\Doctrine\Repository;
 
+use App\Common\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 use App\Content\Comment\Domain\Model\Comment;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Content\Comment\Domain\Repository\CommentRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
-class DoctrineCommentRepository extends ServiceEntityRepository
+class DoctrineCommentRepository extends DoctrineRepository implements CommentRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $managerRegistry, EntityManagerInterface $entityManager)
     {
-        parent::__construct($registry, Comment::class);
+        parent::__construct($managerRegistry, $entityManager, Comment::class);
+    }
+
+    public function save(Comment $comment): void
+    {
+        $this->persist($comment);
     }
 }

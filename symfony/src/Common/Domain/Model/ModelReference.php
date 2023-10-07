@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Content\Blog\Domain\Model;
+namespace App\Common\Domain\Model;
 
 # This is used to reference models from a different domain
 # without creating an unneccesary dependency

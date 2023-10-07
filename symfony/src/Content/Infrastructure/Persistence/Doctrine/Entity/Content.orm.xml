@@ -23,7 +23,7 @@
         <field name="title" type="string" nullable="true" />
         <field name="description" type="text" />
         <field name="createdAt" column="created_at" type="datetime" />
-        <many-to-one field="author" target-entity="App\UserProfile\Domain\Model\UserProfile">
+        <many-to-one field="author" target-entity="App\UserProfile\Domain\Model\UserProfile" fetch="EAGER">
             <join-column name="author_id" referenced-column-name="id" nullable="false" on-delete="CASCADE" />
         </many-to-one>
         <one-to-many field="children" target-entity="App\Content\Comment\Domain\Model\Comment" mapped-by="parent" />

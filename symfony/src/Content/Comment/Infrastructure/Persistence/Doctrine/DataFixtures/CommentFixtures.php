@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Content\Blog\Infrastructure\Persistence\Doctrine\DataFixtures;
+namespace App\Content\Comment\Infrastructure\Persistence\Doctrine\DataFixtures;
 
-use App\Content\Blog\Application\Service\CreateBlogService;
-use App\Content\Blog\Domain\Command\CreateBlogCommand;
+use App\Content\Comment\Application\Service\CreateCommentService;
+use App\Content\Blog\Infrastructure\Persistence\Doctrine\DataFixtures\BlogFixtures;
+use App\Content\Comment\Domain\Command\CreateCommentCommand;
 use App\UserProfile\Infrastructure\Persistence\Doctrine\DataFixtures\UserProfileFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -13,14 +14,14 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
 
-class BlogFixtures extends Fixture implements DependentFixtureInterface
+class CommentFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const AMOUNT = 100;
-    public const REF = 'content-blog-';
+    public const AMOUNT = 1000;
+    public const REF = 'content-comment-';
     private Generator $faker;
 
     public function __construct(
-        private readonly CreateBlogService $createBlogService
+        private readonly CreateCommentService $createCommentService
     ) {
         $this->faker = Factory::create();
     }
@@ -29,15 +30,16 @@ class BlogFixtures extends Fixture implements DependentFixtureInterface
     {
         for ($i = 1; $i <= self::AMOUNT; $i++) {
             $author = $this->getReference(UserProfileFixtures::REF.rand(1, UserProfileFixtures::AMOUNT));
+            $blog = $this->getReference(BlogFixtures::REF.rand(1, BlogFixtures::AMOUNT));
 
             // @TODO only flush at the end, maybe batch command handler that can delay event publishing?
-            $blog = ($this->createBlogService)(new CreateBlogCommand(
-                $this->faker->sentence(rand(5, 10)),
-                implode(' ', $this->faker->sentences(rand(50, 100))),
+            $comment = ($this->createCommentService)(new CreateCommentCommand(
+                implode(' ', $this->faker->sentences(rand(1, 5))),
                 $author,
+                $blog,
             ));
 
-            $this->addReference(self::REF.$i, $blog);
+            $this->addReference(self::REF.$i, $comment);
         }
 
         $manager->flush();
@@ -47,6 +49,7 @@ class BlogFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             UserProfileFixtures::class,
+            BlogFixtures::class,
         ];
     }
 }

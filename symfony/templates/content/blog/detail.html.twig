@@ -6,16 +6,17 @@
     <tr>
         <td style="padding: 10px;">
             <h1>{{ blog.title }}</h1>
-            <p>{{ blog.author.name }}, {{ blog.author.email }}</p>
-        </td>
-        <td style="padding: 10px;">
-            <p>{{ blog.createdAt.format('Y-m-d H:i:s') }}</p>
-            <p>{{ blog.children.count }} comments</p>
+            <p>{{ blog.author.name }}, {{ blog.author.email }}, {{ blog.createdAt.format('Y-m-d H:i:s') }}</p>
         </td>
     </tr>
     <tr>
         <td colspan="2" style="padding: 10px;">
             <p>{{ blog.description }}</p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="padding: 10px;">
+            {% include 'content/comment/list.html.twig' with {'comments': blog.children} %}
         </td>
     </tr>
 </table>
