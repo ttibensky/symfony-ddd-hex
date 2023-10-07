@@ -9,8 +9,8 @@ use App\Common\Domain\Bus\Command\Command;
 final class CreateUserProfileCommand implements Command
 {
     public function __construct(
-        private string $name,
-        private string $email,
+        private readonly string $name,
+        private readonly string $email,
     ) {}
 
     public function getName(): string

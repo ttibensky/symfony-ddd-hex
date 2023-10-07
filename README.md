@@ -49,6 +49,7 @@ docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-se
 docker compose exec symfony bin/console doctrine:database:drop --force
 docker compose exec symfony bin/console doctrine:database:create
 docker compose exec symfony bin/console doctrine:migrations:migrate --no-interaction --all-or-nothing
+# the fixtures might take a while to finish
 docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction
 ```
 
@@ -59,6 +60,7 @@ docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction
 docker compose exec symfony bin/console doctrine:database:drop --force --env=test
 docker compose exec symfony bin/console doctrine:database:create --env=test
 docker compose exec symfony bin/console doctrine:migrations:migrate --no-interaction --env=test --all-or-nothing
+# the fixtures might take a while to finish
 docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction --env=test
 
 # run tests

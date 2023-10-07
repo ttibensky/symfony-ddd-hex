@@ -6,7 +6,7 @@ namespace App\Content\Comment\Domain\Model;
 
 use App\Content\Domain\Model\Content;
 
-final class Comment extends Content
+class Comment extends Content
 {
     public function getType(): string
     {

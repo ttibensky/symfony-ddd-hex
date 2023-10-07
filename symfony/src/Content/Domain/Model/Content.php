@@ -6,6 +6,7 @@ namespace App\Content\Domain\Model;
 
 use App\Common\Domain\Aggregate\AggregateRoot;
 use App\Content\Comment\Domain\Model\Comment;
+use App\UserProfile\Domain\Event\BlogCreatedEvent;
 use App\UserProfile\Domain\Model\UserProfile;
 
 /**
@@ -37,10 +38,10 @@ abstract class Content extends AggregateRoot
         string $title,
         string $description,
         UserProfile $author,
-        ?Content $parent,
+        ?Content $parent = null,
     ): self {
         $content = new static($id, $title, $description, new \DateTime(), $author, $parent);
-        $content->record(new ContentCreatedEvent($content));
+        $content->record(new BlogCreatedEvent($content)); // @TODO use factory to get correct event
 
         return $content;
     }

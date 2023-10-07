@@ -26,6 +26,7 @@ class UserProfileFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         for ($i = 1; $i <= self::AMOUNT; $i++) {
+            // @TODO only flush at the end, maybe batch command handler that can delay event publishing?
             $userProfile = ($this->createUserProfileService)(new CreateUserProfileCommand(
                 $this->faker->unique()->name(),
                 $this->faker->unique()->email(),

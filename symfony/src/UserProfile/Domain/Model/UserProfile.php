@@ -12,7 +12,7 @@ use App\UserProfile\Domain\Event\UserProfileCreatedEvent;
  * UserProfile contains publicly accessible data,
  * while User contains personal data which are not publickly accessible (GDPR).
  */
-final class UserProfile extends AggregateRoot
+class UserProfile extends AggregateRoot
 {
     public function __construct(
         private ?int $id,
