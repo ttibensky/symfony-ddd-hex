@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Content\Domain\Model;
 
 use App\Common\Domain\Aggregate\AggregateRoot;
+use App\Content\Blog\Domain\Event\BlogCreatedEvent;
+use App\Content\Blog\Domain\Model\ModelReference;
 use App\Content\Comment\Domain\Model\Comment;
-use App\UserProfile\Domain\Event\BlogCreatedEvent;
-use App\UserProfile\Domain\Model\UserProfile;
 
 /**
  * Content can be any type of content. Blog, Comments for now. Maybe reviews, videos or memes in the future.
@@ -26,7 +26,7 @@ abstract class Content extends AggregateRoot
         protected string $title,
         protected string $description,
         protected ?\DateTime $createdAt,
-        protected UserProfile $author, // @TODO replace with DTO
+        protected ModelReference $author,
         protected ?Content $parent,
         protected ?iterable $children = [],
     ) {
@@ -37,7 +37,7 @@ abstract class Content extends AggregateRoot
         ?int $id,
         string $title,
         string $description,
-        UserProfile $author,
+        ModelReference $author,
         ?Content $parent = null,
     ): self {
         $content = new static($id, $title, $description, new \DateTime(), $author, $parent);
@@ -75,7 +75,7 @@ abstract class Content extends AggregateRoot
         return $this->createdAt;
     }
 
-    public function getAuthor(): UserProfile
+    public function getAuthor(): ModelReference
     {
         return $this->author;
     }
@@ -94,11 +94,12 @@ abstract class Content extends AggregateRoot
     {
         return [
             'id' => $this->getId(),
+            'class' => get_class($this), // @TODO possible problem with Doctrine's Proxy classes
             'title' => $this->getTitle(),
             'description' => $this->getDescription(),
             'createdAt' => $this->getCreatedAt()->format('c'),
             'author' => $this->getAuthor()->toArray(),
-            'parent' => $this->getParent()?->toArray(), // @todo
+            'parent' => $this->getParent()?->toArray(),
             'children' => array_map(function (Comment $comment) {
                 return $comment->toArray();
             }, (array) $this->getChildren()),
@@ -107,13 +108,13 @@ abstract class Content extends AggregateRoot
 
     public static function fromArray(array $parameters): self
     {
-        return new static(
+        return new $parameters['class'](
             $parameters['id'],
             $parameters['title'],
             $parameters['description'],
             new \DateTime($parameters['createdAt']),
-            UserProfile::fromArray($parameters['author']), // @todo
-            $parameters['parent'] ? Content::fromArray($parameters['parent']) : null, // @todo maybe we need a specific class
+            ModelReference::fromArray($parameters['author']),
+            $parameters['parent'] ? $parameters['parent']['class']::fromArray($parameters['parent']) : null,
             $parameters['children'] ? array_map(function (array $rawComment) {
                 return Comment::fromArray($rawComment);
             }, $parameters['children']) : []

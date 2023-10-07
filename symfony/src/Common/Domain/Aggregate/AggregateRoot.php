@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Common\Domain\Aggregate;
 
 use App\Common\Domain\Bus\Event\Event;
+use App\Content\Blog\Domain\Model\ModelReference;
 
-abstract class AggregateRoot
+abstract class AggregateRoot implements ModelReference
 {
     private array $events = [];
 

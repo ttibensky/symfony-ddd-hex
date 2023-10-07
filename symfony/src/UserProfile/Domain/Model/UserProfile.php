@@ -65,6 +65,7 @@ class UserProfile extends AggregateRoot
     {
         return [
             'id' => $this->getId(),
+            'class' => get_class($this), // @TODO possible problem with Doctrine's Proxy classes
             'name' => $this->getName(),
             'email' => $this->getEmail(),
             'createdAt' => $this->getCreatedAt()->format('c'),
