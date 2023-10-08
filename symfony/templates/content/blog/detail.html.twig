@@ -16,7 +16,7 @@
     </tr>
     <tr>
         <td colspan="2" style="padding: 10px;">
-            {% include 'content/comment/list.html.twig' with {'comments': blog.children} %}
+            {% include 'content/comment/list.html.twig' with {'content': blog, 'comments': blog.children} %}
         </td>
     </tr>
 </table>

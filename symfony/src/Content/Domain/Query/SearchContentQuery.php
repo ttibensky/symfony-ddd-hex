@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Content\Domain\Command;
+namespace App\Content\Domain\Query;
 
-use App\Common\Domain\Bus\Command\Command;
+use App\Common\Domain\Bus\Query\Query;
 use App\Content\Domain\Model\ContentSearch;
 
-final class SearchContentCommand implements Command
+final class SearchContentQuery implements Query
 {
     public function __construct(
         private readonly ContentSearch $contentSearch,

@@ -27,7 +27,7 @@ abstract class Content extends AggregateRoot
         protected string $description,
         protected ?\DateTime $createdAt,
         protected ModelReference $author,
-        protected ?Content $parent,
+        protected ?Content $parent = null,
         protected ?iterable $children = [],
     ) {
         $this->createdAt = $createdAt ?? new \DateTime();

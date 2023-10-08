@@ -20,6 +20,11 @@ class DoctrineContentRepository extends DoctrineRepository implements ContentRep
         parent::__construct($managerRegistry, $entityManager, Content::class);
     }
 
+    public function get(int $id): ?Content
+    {
+        return $this->find($id);
+    }
+
     # this method is ment to implement proper searching and ordering
     # at the moment it is only covering the basic use case - fetching a paginated list of content from the database
     public function search(ContentSearch $contentSearch): PagedList

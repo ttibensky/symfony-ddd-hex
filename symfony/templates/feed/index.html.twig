@@ -2,7 +2,8 @@
 
 {% block body %}
 
-<h1>Welcome to cool blogs</h1>
+<h1>Welcome to lorem ipsum blogs</h1>
+<a href="{{ path('blog_post') }}" style="padding: 10px; color: white; background-color: blue;">Create new blog</a>
 <table>
     {% for content in pagedList.data %}
         <tr>

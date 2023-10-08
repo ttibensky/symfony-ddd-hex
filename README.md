@@ -78,3 +78,8 @@ docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-se
 - https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/
 - https://dev.to/victoor/ddd-and-hexagonal-architecture-with-symfony-flex-part-2-4ojc
 - https://riekeltbrands.medium.com/symfony-how-to-effectively-use-tagged-services-2bf6e0b11bb9
+
+## TODO
+
+- resolve TODOs in the code
+- translations

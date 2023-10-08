@@ -10,6 +10,12 @@ blog:
         namespace: App\Content\Blog\Infrastructure\Controller
     type: attribute
 
+comment:
+    resource:
+        path: ../../src/Content/Comment/Infrastructure/Controller/
+        namespace: App\Content\Comment\Infrastructure\Controller
+    type: attribute
+
 kernel:
     resource: App\Kernel
     type: attribute
