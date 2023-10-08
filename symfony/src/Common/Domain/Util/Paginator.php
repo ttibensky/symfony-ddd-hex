@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Common\Domain\Util;
 
 use App\Common\Domain\Router\RouterInterface;
@@ -17,11 +19,13 @@ readonly class Paginator
         private int $recordsPerPage = 10,
         private string $urlParamName = self::DEFAULT_URL_PARAM_NAME,
     ) {
+        assert($currentPage >= 1);
+        assert($recordsPerPage >= 1);
     }
 
     public function setTotalRecords(int $totalRecords): self
     {
-        $this->totalPages = ceil($totalRecords / $this->recordsPerPage);
+        $this->totalPages = (int) ceil($totalRecords / $this->recordsPerPage);
 
         return $this;
     }

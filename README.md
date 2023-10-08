@@ -53,7 +53,7 @@ docker compose exec symfony bin/console doctrine:migrations:migrate --no-interac
 docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction
 ```
 
-### PHPUnit Tests
+### Tests
 
 ```bash
 # reset database
@@ -63,7 +63,7 @@ docker compose exec symfony bin/console doctrine:migrations:migrate --no-interac
 # the fixtures might take a while to finish
 docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction --env=test
 
-# run tests
+# run unit tests
 docker compose exec symfony bin/phpunit tests
 
 # connect to mysql
@@ -87,3 +87,6 @@ docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-se
 - add code dependency graph visualisation to point out potential problems
 - add README to certain directories for better understanding of the architecture
 - add static code analysis, linter
+- check if there are strict_types everywhere and if we still need to declare it everywhere
+- handle exceptions in controllers
+- add test coverage report, maybe also badge
