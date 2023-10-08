@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Common\Domain\Util;
+namespace App\Tests\Unit\Common\Domain\Util;
 
 use App\Common\Domain\Router\RouterInterface;
 use App\Common\Domain\Util\Paginator;
-use App\Common\Infrastructure\Router\Router;
-use App\Tests\TestBase;
 use AssertionError;
+use Codeception\Test\Unit;
 
-class PaginatorTest extends TestBase
+class PaginatorTest extends Unit
 {
     public function testSetTotalRecords(): void
     {
-        $router = $this->getMockBuilder(RouterInterface::class)->getMock();
+        $router = $this->makeEmpty(RouterInterface::class);
 
         foreach (
             [
@@ -42,7 +41,7 @@ class PaginatorTest extends TestBase
 
     public function testGetCurrentPage(): void
     {
-        $router = $this->getMockBuilder(RouterInterface::class)->getMock();
+        $router = $this->makeEmpty(RouterInterface::class);
 
         foreach (
             [
@@ -83,7 +82,7 @@ class PaginatorTest extends TestBase
         ) {
             [$route, $routeParams, $urlParamName, $page] = $case;
 
-            $router = $this->getMockBuilder(RouterInterface::class)->getMock();
+            $router = $this->makeEmpty(RouterInterface::class);
             $router
                 ->expects($this->once())
                 ->method('generateUrl')
@@ -105,7 +104,7 @@ class PaginatorTest extends TestBase
 
     public function testGetRecordsPerPage(): void
     {
-        $router = $this->getMockBuilder(RouterInterface::class)->getMock();
+        $router = $this->makeEmpty(RouterInterface::class);
 
         foreach (
             [
@@ -137,7 +136,7 @@ class PaginatorTest extends TestBase
 
     public function testGetGetOffset(): void
     {
-        $router = $this->getMockBuilder(RouterInterface::class)->getMock();
+        $router = $this->makeEmpty(RouterInterface::class);
 
         foreach (
             [

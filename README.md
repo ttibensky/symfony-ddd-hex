@@ -55,6 +55,8 @@ docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction
 
 ### Tests
 
+#### Reset database, SQL connection & dump
+
 ```bash
 # reset database
 docker compose exec symfony bin/console doctrine:database:drop --force --env=test
@@ -63,13 +65,28 @@ docker compose exec symfony bin/console doctrine:migrations:migrate --no-interac
 # the fixtures might take a while to finish
 docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction --env=test
 
-# run unit tests
-docker compose exec symfony bin/phpunit tests
-
 # connect to mysql
 docker compose exec mysql mysql -usymfony -pzTL32UkUGpoX --default-character-set=utf8mb4 symfony_test
 # create sql dump
 docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-set=utf8mb4 symfony_test > ./mysql/init/3_symfony_crud_test.sql
+```
+
+#### Unit tests
+
+```bash
+docker compose exec symfony php vendor/bin/codecept run unit
+```
+
+#### Functional tests
+
+```bash
+docker compose exec symfony php vendor/bin/codecept run functional
+```
+
+#### Acceptance tests
+
+```bash
+docker compose exec symfony php vendor/bin/codecept run acceptance
 ```
 
 ## Sources of inspiration
