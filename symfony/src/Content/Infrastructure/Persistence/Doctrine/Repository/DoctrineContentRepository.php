@@ -61,7 +61,7 @@ class DoctrineContentRepository extends DoctrineRepository implements ContentRep
 
         // @TODO replace findBy with a custom query/queries to remove n+1 in view
         return new PagedList(
-            $this->findBy(['id' => array_column($ids, 'id')]),
+            $this->findBy(['id' => array_column($ids, 'id')], ['id' => 'desc']),
             $total,
         );
     }
