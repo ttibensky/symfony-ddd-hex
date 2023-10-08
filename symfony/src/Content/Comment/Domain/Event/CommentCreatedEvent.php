@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Content\Blog\Domain\Event;
+namespace App\Content\Comment\Domain\Event;
 
 use App\Common\Domain\Bus\Event\Event;
 use App\Content\Comment\Domain\Model\Comment;

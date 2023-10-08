@@ -68,7 +68,7 @@ docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction 
 # connect to mysql
 docker compose exec mysql mysql -usymfony -pzTL32UkUGpoX --default-character-set=utf8mb4 symfony_test
 # create sql dump
-docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-set=utf8mb4 symfony_test > ./mysql/init/3_symfony_crud_test.sql
+docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-set=utf8mb4 symfony_test > ./mysql/init/3_symfony_test.sql
 ```
 
 #### Unit tests
@@ -107,3 +107,4 @@ docker compose exec symfony php vendor/bin/codecept run acceptance
 - check if there are strict_types everywhere and if we still need to declare it everywhere
 - handle exceptions in controllers
 - add test coverage report, maybe also badge
+- pre-commit hooks to run tests

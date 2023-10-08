@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Content\Domain\Event;
 
 use App\Content\Blog\Domain\Event\BlogCreatedEvent;
-use App\Content\Blog\Domain\Event\CommentCreatedEvent;
+use App\Content\Comment\Domain\Event\CommentCreatedEvent;
 use App\Content\Comment\Domain\Model\Comment;
 use App\Content\Domain\Model\Content;
 

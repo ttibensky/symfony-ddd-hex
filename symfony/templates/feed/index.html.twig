@@ -8,10 +8,8 @@
     {% for content in pagedList.data %}
         <tr>
             <td style="padding: 10px 0;">
-                <p style="font-weight: bold;">
-                    {# @TODO create a DTO that contains the link and send it here from the controller to remove logic from the view #}
-                    <a href="{{ path(content.type ~ '_get', {'id': content.id}) }}">{{ content.title }}</a>
-                </p>
+                {# @TODO create a DTO that contains the link and send it here from the controller to remove logic from the view #}
+                <h2><a href="{{ path(content.type ~ '_get', {'id': content.id}) }}">{{ content.title }}</a></h2>
                 <p>{{ content.author.name }}, {{ content.author.email }}, {{ content.createdAt.format('Y-m-d H:i:s') }}, {{ content.children.count }} comments</p>
             </td>
         </tr>
