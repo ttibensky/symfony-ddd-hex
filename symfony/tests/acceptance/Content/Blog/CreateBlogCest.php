@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Content\Blog;
+namespace App\Tests\Acceptance\Content\Blog;
 
-use App\Tests\FunctionalTester;
+use App\Tests\AcceptanceTester;
 use Faker\Factory;
 
 class CreateBlogCest
 {
-    public function tryCreateBlog(FunctionalTester $I): void
+    public function tryCreateBlog(AcceptanceTester $I): void
     {
         $faker = Factory::create();
 

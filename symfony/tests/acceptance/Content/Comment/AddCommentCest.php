@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\Content\Comment;
+namespace App\Tests\Acceptance\Content\Comment;
 
-use App\Tests\FunctionalTester;
+use App\Tests\AcceptanceTester;
 use Faker\Factory;
 
 class AddCommentCest
 {
-    public function tryCommentAdd(FunctionalTester $I): void
+    public function tryCommentAdd(AcceptanceTester $I): void
     {
         $faker = Factory::create();
 
