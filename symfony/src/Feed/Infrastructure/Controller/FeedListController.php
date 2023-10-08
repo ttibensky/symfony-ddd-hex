@@ -1,11 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Feed\Infrastructure\Controller;
 
+use App\Common\Domain\Util\Paginator;
 use App\Common\Infrastructure\Controller\Controller;
 use App\Content\Application\Service\SearchContentService;
+use App\Content\Domain\Model\Content;
 use App\Content\Domain\Model\ContentSearch;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -37,15 +39,25 @@ class FeedListController extends Controller
     /**
      * @Route("/{_locale}/feed", name="feed_index", requirements={"_locale": "en|sk"})
      */
-    public function get(SearchContentService $searchContentService): Response
+    public function get(Request $request, SearchContentService $searchContentService): Response
     {
-        $contentSearch = new ContentSearch();
+        $paginator = new Paginator(
+            $this->router,
+            'feed_index',
+            [],
+            (int) $request->query->get(Paginator::DEFAULT_URL_PARAM_NAME, 1),
+        );
+
+        $contentSearch = new ContentSearch([Content::TYPE_BLOG], $paginator->getRecordsPerPage(), $paginator->getOffset());
         $pagedList = $searchContentService($contentSearch);
+
+        $paginator->setTotalRecords($pagedList->getTotal());
 
         return $this->render(
             'feed/index.html.twig',
             [
                 'pagedList' => $pagedList,
+                'paginator' => $paginator,
             ],
         );
     }

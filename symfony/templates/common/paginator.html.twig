@@ -1,0 +1,49 @@
+<table>
+    <tr>
+        <td>
+            {% if paginator.currentPage > 1 %}
+                <a style="padding: 10px 15px; border: 1px dashed blue;" href="{{ paginator.url(1) }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            {% else %}
+                <span style="padding: 10px 15px; border: 1px dashed blue;" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </span>
+            {% endif %}
+        </td>
+
+        {% set start = paginator.currentPage - 5 %}
+        {% set stop = paginator.currentPage + 5 %}
+        {% if start <= 1 %}
+            {% set start = 1 %}
+        {% endif %}
+        {% if stop >= paginator.totalPages %}
+            {% set stop = paginator.totalPages %}
+        {% endif %}
+        {% if stop == 0 %}
+            {% set stop = 1 %}
+        {% endif %}
+
+        {% for pageNumber in start..stop %}
+            <td>
+                {% if pageNumber == paginator.currentPage %}
+                    <span style="padding: 10px 15px; border: 1px dashed blue; font-weight: bold; background-color: gray;">{{ pageNumber }}</span>
+                {% else %}
+                    <a style="padding: 10px 15px; border: 1px dashed blue;" href="{{ paginator.url(pageNumber) }}">{{ pageNumber }}</a>
+                {% endif %}
+            </td>
+        {% endfor %}
+        
+        <td>
+            {% if paginator.currentPage < paginator.totalPages %}
+                <a style="padding: 10px 15px; border: 1px dashed blue;" href="{{ paginator.url(paginator.totalPages) }}" aria-label="Next">
+                    <span aria-hidden="true">»</span>
+                </a>
+            {% else %}
+                <span style="padding: 10px 15px; border: 1px dashed blue;" aria-label="Next">
+                    <span aria-hidden="true">»</span>
+                </span>
+            {% endif %}
+        </td>
+    </tr>
+</table>

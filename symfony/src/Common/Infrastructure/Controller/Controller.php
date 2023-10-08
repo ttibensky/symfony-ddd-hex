@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Common\Infrastructure\Controller;
 
+use App\Common\Infrastructure\Router\Router;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -17,5 +18,6 @@ class Controller extends AbstractController
      */
     public function __construct(
         protected readonly TranslatorInterface $translator,
+        protected readonly Router $router,
     ) {}
 }

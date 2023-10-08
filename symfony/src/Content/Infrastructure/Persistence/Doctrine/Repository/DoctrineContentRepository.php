@@ -29,15 +29,15 @@ class DoctrineContentRepository extends DoctrineRepository implements ContentRep
     # at the moment it is only covering the basic use case - fetching a paginated list of content from the database
     public function search(ContentSearch $contentSearch): PagedList
     {
-        $rsm = new ResultSetMapping();
-        $rsm->addScalarResult('id', 'id');
+        $rsmIds = new ResultSetMapping();
+        $rsmIds->addScalarResult('id', 'id');
 
         // only select IDs so we do not have to work with hydration the hard way
         $ids = $this
             ->getEntityManager()
             ->createNativeQuery(
                 'SELECT c.id FROM content AS c WHERE c.type IN (:types) ORDER BY c.id desc LIMIT :limit OFFSET :offset',
-                $rsm
+                $rsmIds
             )
             ->setParameters([
                 'types' => $contentSearch->getTypes(),
@@ -46,10 +46,23 @@ class DoctrineContentRepository extends DoctrineRepository implements ContentRep
             ])
             ->getScalarResult();
 
+        $rsmTotal = new ResultSetMapping();
+        $rsmTotal->addScalarResult('total', 'total');
+        $total = $this
+            ->getEntityManager()
+            ->createNativeQuery(
+                'SELECT COUNT(c.id) AS total FROM content AS c WHERE c.type IN (:types) ORDER BY c.id desc',
+                $rsmTotal
+            )
+            ->setParameters([
+                'types' => $contentSearch->getTypes(),
+            ])
+            ->getSingleScalarResult();
+
         // @TODO replace findBy with a custom query/queries to remove n+1 in view
         return new PagedList(
             $this->findBy(['id' => array_column($ids, 'id')]),
-            $this->count([]),
+            $total,
         );
     }
 }

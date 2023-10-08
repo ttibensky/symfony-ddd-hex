@@ -3,11 +3,11 @@
 {% block body %}
 
 <h1>Welcome to lorem ipsum blogs</h1>
-<a href="{{ path('blog_post') }}" style="padding: 10px; color: white; background-color: blue;">Create new blog</a>
+<a href="{{ path('blog_post') }}" style="padding: 10px 15px; color: white; background-color: blue;">Create new blog</a>
 <table>
     {% for content in pagedList.data %}
         <tr>
-            <td style="padding: 10px;">
+            <td style="padding: 10px 0;">
                 <p style="font-weight: bold;">
                     {# @TODO create a DTO that contains the link and send it here from the controller to remove logic from the view #}
                     <a href="{{ path(content.type ~ '_get', {'id': content.id}) }}">{{ content.title }}</a>
@@ -16,6 +16,11 @@
             </td>
         </tr>
     {% endfor %}
+        <tr>
+            <td style="padding: 10px 0;">
+                {% include 'common/paginator.html.twig' %}
+            </td>
+        </tr>
 </table>
 
 {% endblock %}
