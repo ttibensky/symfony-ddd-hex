@@ -6,28 +6,28 @@
 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
     <table>
         <tr>
-            <td style="padding: 10px;">
+            <td style="padding: 10px 0;">
                 {{ form_label(form.title) }}<br>
                 {{ form_widget(form.title, {'attr': {'style': 'width: 300px;'}}) }}<br>
                 {{ form_errors(form.title) }}
             </td>
         </tr>
         <tr>
-            <td style="padding: 10px;">
+            <td style="padding: 10px 0;">
                 {{ form_label(form.author) }}<br>
                 {{ form_widget(form.author, {'attr': {'style': 'width: 300px;'}}) }}<br>
                 {{ form_errors(form.author) }}
             </td>
         </tr>
         <tr>
-            <td style="padding: 10px;">
+            <td style="padding: 10px 0;">
                 {{ form_label(form.description) }}<br>
                 {{ form_widget(form.description, {'attr': {'style': 'width: 300px;', 'rows': '10'}}) }}<br>
                 {{ form_errors(form.description) }}
             </td>
         </tr>
         <tr>
-            <td style="padding: 10px;">
+            <td style="padding: 10px 0;">
                 {{ form_widget(form.submit) }}
             </td>
         </tr>

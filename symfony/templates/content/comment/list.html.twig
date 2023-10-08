@@ -2,15 +2,15 @@
 <table>
     {% for comment in comments %}
         <tr>
-            <td style="padding: 10px;">
+            <td style="padding: 10px 0;">
                 <p>{{ comment.description }}</p>
                 <p>{{ comment.author.name }}, {{ comment.author.email }}, {{ comment.createdAt.format('Y-m-d H:i:s') }}, {{ comment.children.count }} replies</p>
             </td>
         </tr>
     {% endfor %}
     <tr>
-        <td style=padding: 10px;>
-            <a href="{{ path('comment_post', {'parentId': content.id}) }}" style="padding: 10px; color: white; background-color: blue;">Add new comment</a>
+        <td style="padding: 10px 0;">
+            <a href="{{ path('comment_post', {'parentId': content.id}) }}" style="padding: 10px 15px; color: white; background-color: blue;">Add new comment</a>
         </td>
     </tr>
 </table>
