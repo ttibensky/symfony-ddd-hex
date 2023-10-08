@@ -9,6 +9,6 @@ modules:
     enabled:
         - WebDriver:
             url: http://symfony:80
-            browser: chrome
-            host: chrome
+            browser: firefox
+            host: firefox
         - \App\Tests\Helper\Acceptance

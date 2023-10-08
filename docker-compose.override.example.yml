@@ -19,8 +19,8 @@ services:
     ports:
       - 3306:3306
 
-  # chrome:
-  #   image: selenium/standalone-chrome-debug:3.141.59
+  # firefox:
+  #   image: selenium/standalone-firefox:118.0
   #   ports:
   #     - 4444
   #     - 5900
