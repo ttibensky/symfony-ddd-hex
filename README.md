@@ -57,6 +57,8 @@ docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction
 
 #### Reset database, SQL connection & dump
 
+Reset is needed from time to time when you test database gets outdated (or if you encounter seamingly random errors).
+
 ```bash
 # reset database
 docker compose exec symfony bin/console doctrine:database:drop --force --env=test
@@ -74,13 +76,13 @@ docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-se
 #### Unit tests
 
 ```bash
-docker compose exec symfony php vendor/bin/codecept run unit
+clear && docker compose exec symfony php vendor/bin/codecept run unit
 ```
 
 #### Functional tests
 
 ```bash
-docker compose exec symfony php vendor/bin/codecept run functional
+clear && docker compose exec symfony php vendor/bin/codecept run functional
 ```
 
 #### Acceptance tests
@@ -89,7 +91,7 @@ If you would like to run acceptance test, uncomment `firefox` container in your 
 To run acceptance tests, you need to have firefox instance running. It can be resource heavy, so it is commented out by default.
 
 ```bash
-docker compose exec symfony php vendor/bin/codecept run acceptance
+clear && docker compose exec symfony php vendor/bin/codecept run acceptance
 ```
 
 ## Sources of inspiration
