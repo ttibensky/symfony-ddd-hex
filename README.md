@@ -83,3 +83,7 @@ docker compose exec mysql mysqldump -uroot -pzTL32UkUGpoX --default-character-se
 
 - resolve TODOs in the code
 - translations
+- add architecture diagram
+- add code dependency graph visualisation to point out potential problems
+- add README to certain directories for better understanding of the architecture
+- add static code analysis, linter

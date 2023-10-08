@@ -22,6 +22,9 @@ class CommentType extends AbstractType
                 TextareaType::class,
                 [
                     'label' => 'Body',
+                    'constraints' => [
+                        new NotBlank(['message' => 'Body is required.']),
+                    ],
                 ]
             )
             ->add(
