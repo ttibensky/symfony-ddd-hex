@@ -57,7 +57,8 @@ docker compose exec symfony bin/console doctrine:fixtures:load --no-interaction
 
 #### Reset database, SQL connection & dump
 
-Reset is needed from time to time when you test database gets outdated (or if you encounter seamingly random errors).
+Before the first test run (functional or acceptance), you need to run migrations and fixtures on the test database using the commands below.
+Reset database is also needed from time to time when you test database gets outdated (or if you encounter seamingly random errors).
 
 ```bash
 # reset database
@@ -107,9 +108,8 @@ clear && docker compose exec symfony php vendor/bin/codecept run acceptance
 - translations
 - add architecture diagram
 - add code dependency graph visualisation to point out potential problems
-- add README to certain directories for better understanding of the architecture
 - add static code analysis, linter
 - check if there are strict_types everywhere and if we still need to declare it everywhere
 - handle exceptions in controllers
-- add test coverage report, maybe also badge
+- add test coverage report, maybe also a badge to this readme
 - pre-commit hooks to run tests
