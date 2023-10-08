@@ -18,3 +18,9 @@ services:
       - ./mysql/data:/var/lib/mysql
     ports:
       - 3306:3306
+
+  # chrome:
+  #   image: selenium/standalone-chrome-debug:3.141.59
+  #   ports:
+  #     - 4444
+  #     - 5900

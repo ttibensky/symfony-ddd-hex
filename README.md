@@ -85,6 +85,9 @@ docker compose exec symfony php vendor/bin/codecept run functional
 
 #### Acceptance tests
 
+If you would like to run acceptance test, uncomment `chrome` container in your docker-compose.override.yml.
+To run acceptance tests, you need to have chrome instance running. It can be resource heavy, so it is commented out by default.
+
 ```bash
 docker compose exec symfony php vendor/bin/codecept run acceptance
 ```
